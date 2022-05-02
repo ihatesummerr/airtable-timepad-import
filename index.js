@@ -11,12 +11,11 @@ const geocode = axios.create({
 	baseURL: 'https://maps.googleapis.com/maps/api/geocode/json',
 });
 
-timepad.defaults.headers.common['Authorization'] =
-	'Bearer c0b2ae3e9a442d01a7f2c2a7db10c913d3d8cb07';
+timepad.defaults.headers.common['Authorization'] = 'Bearer API KEY';
 
 async function get_record(skip) {
 	const { data } = await timepad.get(
-		`/events?limit=1&skip=${skip}&sort=date&fields=location,description_short,description_html,poster_image`
+		`/events?limit=100&skip=${skip}&sort=date&fields=location,description_short,description_html,poster_image`
 	);
 
 	const records = await Promise.all(
@@ -60,7 +59,7 @@ async function get_location(address) {
 		} = await geocode.get('', {
 			params: {
 				address,
-				key: 'AIzaSyD2rrVSeVuthc0PrKESgtE6-5J3SHA7AV0',
+				key: 'API_KEY',
 				language: 'ru',
 			},
 		});
@@ -79,9 +78,7 @@ async function get_location(address) {
 	}
 }
 
-const base = new Airtable({ apiKey: 'keyrgqKgkao7iwzmh' }).base(
-	'appfoz9p6W2p7EPEp'
-);
+const base = new Airtable({ apiKey: 'API_KEY' }).base('BASE_ID');
 
 const data = fs.existsSync('./data.json')
 	? JSON.parse(fs.readFileSync('./data.json'))

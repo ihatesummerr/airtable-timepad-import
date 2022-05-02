@@ -5,15 +5,13 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"start": "node index.js"
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"@airtable/blocks-cli": "^2.0.1",
 		"airtable": "^0.11.3",
 		"axios": "^0.27.2"
-	},
-	"devDependencies": {
-		"typescript": "^4.6.4"
 	}
 }
